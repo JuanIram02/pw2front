@@ -1,24 +1,21 @@
-import logo from './logo.svg';
+import React from 'react';
+import {BrowserRouter as Router, Routes, Route, Navigate,} from 'react-router-dom';
+import LoginPage from './authPages/LoginPage/LoginPage';
+import RegisterPage from './authPages/RegisterPage/RegisterPage';
+import './App.css';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>{/* We create the routes were going to have in our application and asign what we want to show in that route*/}
+        <Routes>
+          <Route exact path='/login' element={<LoginPage/>} />
+          <Route exact path='/register' element={<RegisterPage/>} />
+          <Route exact path='/' element={<LoginPage/>} />
+        </Routes>
+      </Router>
+    </>
   );
 }
 
