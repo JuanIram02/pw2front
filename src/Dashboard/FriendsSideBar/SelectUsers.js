@@ -38,6 +38,8 @@ export default function MultipleSelectChip({users, setSelectedUsers}) {
   const theme = useTheme();
   const [personName, setPersonName] = React.useState([]);
 
+  console.log(users)
+
   const handleChange = (e) => {
     const {
       target: { value },
@@ -74,11 +76,11 @@ export default function MultipleSelectChip({users, setSelectedUsers}) {
         >
           {users.map((user) => (
             <MenuItem
-              key={user._id}
-              value={user.mail}
-              style={getStyles(user.mail, personName, theme)}
+              key={user.id}
+              value={user.email}
+              style={getStyles(user.email, personName, theme)}
             >
-              {user.mail}
+              {user.email}
             </MenuItem>
           ))}
         </Select>

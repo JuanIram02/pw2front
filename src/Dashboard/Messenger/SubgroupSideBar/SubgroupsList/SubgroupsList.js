@@ -3,17 +3,7 @@ import {styled} from '@mui/system';
 import SubgroupsListItem from './SubgroupsListItem';
 
 const DUMMY_FRIENDS=[
-    {
-        id:1,
-        name:'Grupo 1'
-    },
-    {
-        id:2,
-        name:'Grupo 2'
-    },{
-        id:3,
-        name:'Grupo 3'
-    },
+  
 ];
 
 const MainContainer=styled('div')({

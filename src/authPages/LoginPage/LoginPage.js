@@ -23,7 +23,7 @@ const handleLogin=()=>{
         mail,
         password
     };
-    login(userDetails,navigate);
+    login(userDetails, navigate);
 };
 /* Montramos la caja y todo lo que pongamos dentro de esa etiqueta irá dentro de ella */
     return( <AuthBox> 

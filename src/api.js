@@ -23,15 +23,7 @@ apiClient.interceptors.request.use((config)=>{
 
 export const login=async(data)=>{
     try{
-          const config = {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-          }
-      
-        return await fetch("http://localhost:5002/auth/login", config);
+        return await apiClient.post("/auth/login", data);
     }catch (exception){
         return{
             error:true,
@@ -43,15 +35,7 @@ export const login=async(data)=>{
 
 export const register = async (data)=>{
     try{
-        const config = {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(data)
-        }
-        console.log(config)
-      return await fetch("http://localhost:5002/auth/register", config);
+      return await apiClient.post("/auth/register", data);
   }catch (exception){
       return{
           error:true,
@@ -65,7 +49,7 @@ export const register = async (data)=>{
 export const sendFriendInvitation = async (data) => {
     console.log(data);
     try{
-        return await apiClient.post('/friend-invitation/invite', data);
+        return await apiClient.post("/friend-invitation/invite", data);
     } catch (exception){
         checkResponseCode(exception);
         return {

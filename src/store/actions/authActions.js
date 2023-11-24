@@ -25,31 +25,29 @@ const login=(userDetails, navigate)=>{
     return async (dispatch)=>{
         const response = await api.login(userDetails);
         console.log(response);
-        if(response.ok){
-            const userDetail = response.json.data;
-            console.log(userDetail)
-            localStorage.setItem('user', JSON.stringify(userDetail));
-            dispatch(setUserDetails(userDetail));
-            navigate("/dashboard");
-        }else{
+        if(response.error){
             dispatch(openAlertMessage(response?.exception?.response.data));
+        }else{
+            const { userDetails } = response?.data;
+            localStorage.setItem('user', JSON.stringify(userDetails));
+            dispatch(setUserDetails(userDetails));
+            navigate("/dashboard");
         }
     };
 };
 
-const register=(userDetails, history)=>{
+const register=(userDetails, navigate)=>{
     return async (dispatch)=>{
-        const response= await api.register(userDetails);
+        const response = await api.register(userDetails);
         console.log(response);
-        if(response.ok){
-            const userDetail = response.json.data;
-            console.log(userDetail)
+        if(response.error){
+            console.log("error");
+            dispatch(openAlertMessage(response?.exception?.response));
+        }else{
+            const { userDetails } = response?.data;
             localStorage.setItem('user', JSON.stringify(userDetails));
             dispatch(setUserDetails(userDetails));
-            history("/dashboard");
-        }else{
-            console.log("error");
-            dispatch(openAlertMessage(response?.exception?.response.data));
+            navigate("/dashboard");
         }
     };
 };

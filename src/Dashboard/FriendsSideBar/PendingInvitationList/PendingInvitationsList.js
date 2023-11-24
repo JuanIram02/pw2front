@@ -17,10 +17,10 @@ const PendingInvitationsList = ({pendingFriendsInvitations}) => {
         <MainContainer>
             {pendingFriendsInvitations.map(invitation=>(
                 <PendingInvitationsListItem
-                    key={invitation._id}
-                    id={invitation._id}
-                    name={invitation.senderId.name}
-                    mail={invitation.senderId.mail}
+                    key={invitation.id}
+                    id={invitation.id}
+                    name={invitation.name}
+                    mail={invitation.mail}
                 />
             ))}
         </MainContainer>

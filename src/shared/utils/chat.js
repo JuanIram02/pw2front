@@ -9,8 +9,8 @@ export const updateDirectChatHistoryIfActive = (data) => {
     const userId = store.getState().auth.userDetails._id;
 
     if(receiverId && userId){
-        const userInConversation = [receiverId, userId];
-
+        const userInConversation = [ receiverId, userId];
+        console.log("actu")
         updateChatHistoryIfSameConversationActive({
             participants,
             userInConversation,
@@ -43,11 +43,15 @@ const updateChatHistoryIfSameConversationActive = ({
     userInConversation,
     messages
 })=>{
-    const result = participants.every(function(participantId){
-        return userInConversation.includes(participantId);
-    });
+    console.log(participants)
+    console.log(userInConversation)
+    const participantIds = participants.map(participant => participant.id);
+    const result = participantIds.every(participantId => userInConversation.includes(participantId));
+
+    console.log(result)
 
     if(result){
+        console.log("entro")
         store.dispatch(setMessages(messages));
 
     }

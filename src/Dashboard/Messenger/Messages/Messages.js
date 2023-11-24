@@ -6,6 +6,7 @@ import DUMMY_MESSAGES from '../DUMMY_MESSAGES';
 import Message from './Message';
 import DateSeparator from "./DateSeparator";
 
+
 const MainContainer = styled("div")({
     height:'calc(100% - 60px)',
     overflow: 'auto',
@@ -30,12 +31,12 @@ const Messages = ({chosenChatDetails, messages}) => {
     return (<MainContainer>
         <MessagesHeader name={chosenChatDetails?.name}/>
         {messages.map((message, index)=>{
-            const sameAuthor = index >0 && messages[index].author._id === messages[index-1].author._id;
+            const sameAuthor = index >0 && messages[index].author.id === messages[index-1].author.id;
 
             const sameDay = index >0 && convertDateToHumanReadable(new Date(message.date), "dd/mm/yy") === convertDateToHumanReadable(new Date(messages[index-1].date), "dd/mm/yy");
 
             return ( 
-            <div key={messages._id} style={{width: "97%"}}>
+            <div key={messages.id} style={{width: "97%"}}>
                 {(!sameDay || index===0) && (
                     <DateSeparator
                     date={convertDateToHumanReadable(
@@ -44,8 +45,7 @@ const Messages = ({chosenChatDetails, messages}) => {
                     )}
                     />
                 )}
-                <Message
-                
+                <Message                
                 content={message.content}
                 username={message.author.name}
                 sameAuthor={sameAuthor}
@@ -53,7 +53,8 @@ const Messages = ({chosenChatDetails, messages}) => {
                     new Date(message.date),
                     'dd/mm/yy'
                 )}
-                sameDay={sameDay}
+                sameDay={sameDay}  
+                reaction = {message.reaction.content}           
             />
             </div>
             );
